@@ -1,13 +1,6 @@
-# algo_rem_mem_2025_parcial_3
+# Algoritmo FIFO - Parcial 3
 
-Implementación de los algoritmos de reemplazo de páginas
-
-Realice fork de este repositorio. Invite al docente fcardonaEAFIT (fcardona@eafit.edu.co).
-
-Parcial.
-
- * I, III -> Algoritmo FIFO
- * II, IV -> Algoritmo LRU
+Implementación del algoritmo FIFO de reemplazo de páginas
 
 Abra el archivo `sim_algo_reem_mem.py` implemente la función `procesar`. Esta recibe tres argumentos:
 
