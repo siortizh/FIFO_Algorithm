@@ -10,15 +10,11 @@
 
 def procesar(segmentos, reqs, marcos_libres):
     results = []
-    # Diccionario para mapear direcciones virtuales a marcos asignados
-    paginas_asignadas = {}  # {página: marco}
-    # Cola FIFO para saber qué página reemplazar
+    paginas_asignadas = {}
     cola_fifo = []
-    # Diccionario para verificar si un marco está en uso
-    marco_en_uso = {}  # {marco: página}
+    marco_en_uso = {}
     
     for req in reqs:
-        # Paso 1: Verificar si la dirección está en un segmento válido
         segmento_valido = None
         for nombre, base, limite in segmentos:
             if base <= req < (base + limite):
@@ -33,16 +29,14 @@ def procesar(segmentos, reqs, marcos_libres):
         offset = req - base
         direccion_fisica = None
         
-        pagina = req >> 5  # Suponemos páginas de 32 bytes (0x20)
+        pagina = req >> 5
         
         if pagina in paginas_asignadas:
-            # La página ya está cargada en memoria
             marco = paginas_asignadas[pagina]
             direccion_fisica = (marco << 5) | (req & 0x1F)
             results.append((req, direccion_fisica, "Marco ya estaba asignado"))
         else:
             if marcos_libres:
-                # Hay marcos libres, asignamos uno
                 marco = marcos_libres.pop(0)
                 paginas_asignadas[pagina] = marco
                 marco_en_uso[marco] = pagina
@@ -50,12 +44,10 @@ def procesar(segmentos, reqs, marcos_libres):
                 direccion_fisica = (marco << 5) | (req & 0x1F)
                 results.append((req, direccion_fisica, "Marco libre asignado"))
             else:
-                # No hay marcos libres, aplicamos FIFO
                 pagina_a_reemplazar = cola_fifo.pop(0)
                 marco = paginas_asignadas.pop(pagina_a_reemplazar)
                 del marco_en_uso[marco]
                 
-                # Asignamos el marco a la nueva página
                 paginas_asignadas[pagina] = marco
                 marco_en_uso[marco] = pagina
                 cola_fifo.append(pagina)
