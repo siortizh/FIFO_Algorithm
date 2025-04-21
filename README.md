@@ -2,7 +2,7 @@
 
 Implementación del algoritmo FIFO de reemplazo de páginas
 
-Abra el archivo `sim_algo_reem_mem.py` implemente la función `procesar`. Esta recibe tres argumentos:
+Abra el archivo `sim_algo_reem_mem.py`, La función `procesar`. Esta recibe tres argumentos:
 
   * `segmentos` es una lista de  tripletas. Ej: `('.text', 0x00, 0x1A)`. Primero el nombre del segmento,
     el segundo la dirección `base` y la tercera el `limite`.
