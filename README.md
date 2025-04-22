@@ -1,8 +1,9 @@
 # Algoritmo FIFO - Parcial 3
 
-Implementación del algoritmo FIFO de reemplazo de páginas
+Implementación del algoritmo FIFO de reemplazo de páginas.
+Su funcion básica es que el primer elemento en entrar a una estructura (como una cola) será el primero en salir.
 
-Abra el archivo `sim_algo_reem_mem.py`, La función `procesar`. Esta recibe tres argumentos:
+En el archivo `sim_algo_reem_mem.py`, La función `procesar`. Esta recibe tres argumentos:
 
   * `segmentos` es una lista de  tripletas. Ej: `('.text', 0x00, 0x1A)`. Primero el nombre del segmento,
     el segundo la dirección `base` y la tercera el `limite`.
@@ -43,8 +44,11 @@ Req: 0x8f Direccion Fisica: 0x2f Acción: Marco ya estaba asignado
 Req: 0x19 Direccion Fisica: 0x19 Acción: Marco ya estaba asignado
 Req: 0x18 Direccion Fisica: 0x18 Acción: Marco ya estaba asignado
 Req: 0xf1 Direccion Fisica: 0x1ff Acción: Segmention Fault
+Req: 0x0b Direccion Fisica: 0x0b Acción: Marco ya estaba asignado
+Req: 0xdf Direccion Fisica: 0x3f Acción: Marco asignado
+Req: 0x0a Direccion Fisica: 0x0a Acción: Marco ya estaba asignado
 ```
 
 ## Autor.
 
- * Nombre completo:
+ * Nombre completo: Sara Isabel Ortiz Henao
