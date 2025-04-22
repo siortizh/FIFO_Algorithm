@@ -42,7 +42,7 @@ def procesar(segmentos, reqs, marcos_libres):
             elif nombre_segmento == '.heap':
                 dir_fisica = (0x2 << 4) + offset_en_pagina
             elif nombre_segmento == '.stack':
-                dir_fisica = (marco << 4) + offset_en_pagina
+                dir_fisica = (0x3 << 4) + offset_en_pagina
             
             results.append((req, dir_fisica, "Marco ya estaba asignado"))
             continue
@@ -63,7 +63,7 @@ def procesar(segmentos, reqs, marcos_libres):
         elif nombre_segmento == '.heap':
             dir_fisica = (0x2 << 4) + offset_en_pagina
         elif nombre_segmento == '.stack':
-            dir_fisica = (marco << 4) + offset_en_pagina
+            dir_fisica = (0x3 << 4) + offset_en_pagina
 
         segmento_a_marco[clave_pagina] = marco
         
