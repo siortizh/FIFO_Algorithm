@@ -34,16 +34,7 @@ def procesar(segmentos, reqs, marcos_libres):
 
         if clave_pagina in segmento_a_marco:
             marco = segmento_a_marco[clave_pagina]
-
-            if nombre_segmento == '.text':
-                dir_fisica = req
-            elif nombre_segmento == '.data':
-                dir_fisica = offset_en_pagina
-            elif nombre_segmento == '.heap':
-                dir_fisica = (0x2 << 4) + offset_en_pagina
-            elif nombre_segmento == '.stack':
-                dir_fisica = (0x3 << 4) + offset_en_pagina
-            
+            dir_fisica = (marco << 4) + offset_en_pagina
             results.append((req, dir_fisica, "Marco ya estaba asignado"))
             continue
             
@@ -51,20 +42,10 @@ def procesar(segmentos, reqs, marcos_libres):
             marco = marcos_disponibles.pop(0)
             accion = "Marco libre asignado"
         else:
-            accion = "Marco asignado"
             marco = 0
+            accion = "Marco asignado"
             
-        if nombre_segmento == '.text' and req == 0x00:
-            dir_fisica = 0x20
-        elif nombre_segmento == '.text':
-            dir_fisica = req
-        elif nombre_segmento == '.data':
-            dir_fisica = offset_en_pagina
-        elif nombre_segmento == '.heap':
-            dir_fisica = (0x2 << 4) + offset_en_pagina
-        elif nombre_segmento == '.stack':
-            dir_fisica = (0x3 << 4) + offset_en_pagina
-
+        dir_fisica = (marco << 4) + offset_en_pagina
         segmento_a_marco[clave_pagina] = marco
         
         results.append((req, dir_fisica, accion))
